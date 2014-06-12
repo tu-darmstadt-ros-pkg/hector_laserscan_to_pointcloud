@@ -2,13 +2,10 @@
 \mainpage
 \htmlinclude manifest.html
 
-\b vigir_drive 
+\b hector_laserscan_to_pointcloud
 
 <!-- 
-This package provides a simple driving interface using throttle and steering commands.
-The basic mode uses a simple keyboard interface based on pr2_teleop_keyboard, and publishes
-the compressed OCSDrive.msg using two integers for throttle and steering.
-
+Converts laser scans to pointclouds. Allows using high fidelity projection and filtering out shadow/veiling points.
 -->
 
 -->
