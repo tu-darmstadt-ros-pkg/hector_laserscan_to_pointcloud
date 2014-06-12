@@ -21,41 +21,16 @@ find_package(catkin REQUIRED COMPONENTS roscpp laser_geometry laser_filters tf)
 #  MinSizeRel     : w/o debug symbols, w/ optimization, stripped binaries
 #set(ROS_BUILD_TYPE RelWithDebInfo)
 
-
-# CATKIN_MIGRATION: removed during catkin migration
-# rosbuild_init()
-
-#set the default path for built executables to the "bin" directory
-set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
-#set the default path for built libraries to the "lib" directory
-set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
-
-#common commands for building c++ executables and libraries
-#add_library(${PROJECT_NAME} src/example.cpp)
-#target_link_libraries(${PROJECT_NAME} another_library)
-#
-# CATKIN_MIGRATION: removed during catkin migration
-# rosbuild_add_boost_directories()
-#find_package(Boost REQUIRED COMPONENTS thread)
-include_directories(${Boost_INCLUDE_DIRS} ${catkin_INCLUDE_DIRS})
-
-
-add_executable(laserscan_to_pointcloud_node src/laserscan_to_pointcloud_node.cpp)
-target_link_libraries(laserscan_to_pointcloud_node ${Boost_LIBRARIES} ${catkin_LIBRARIES} )
-add_dependencies(laserscan_to_pointcloud_node ${catkin_EXPORTED_TARGETS})
-
-#target_link_libraries(${PROJECT_NAME})
-## Generate added messages and services with any dependencies listed here
-#generate_messages(
-#TODO DEPENDENCIES geometry_msgs std_msgs
-#)
-# TODO: fill in what other packages will need to use this package
-## LIBRARIES: libraries you create in this project that dependent projects also need
-## CATKIN_DEPENDS: catkin_packages dependent projects also need
-## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
     DEPENDS
     CATKIN-DEPENDS roscpp laser_geometry laser_filters tf
     INCLUDE_DIRS ${Boost_INCLUDE_DIRS} ${catkin_INCLUDE_DIRS}
     LIBRARIES ${Boost_LIBRARIES} ${catkin_LIBRARIES}
 )
+
+include_directories(${Boost_INCLUDE_DIRS} ${catkin_INCLUDE_DIRS})
+
+add_executable(laserscan_to_pointcloud_node src/laserscan_to_pointcloud_node.cpp)
+target_link_libraries(laserscan_to_pointcloud_node ${Boost_LIBRARIES} ${catkin_LIBRARIES} )
+add_dependencies(laserscan_to_pointcloud_node ${catkin_EXPORTED_TARGETS})
+
