@@ -1,0 +1,17 @@
+/**
+\mainpage
+\htmlinclude manifest.html
+
+\b vigir_drive 
+
+<!-- 
+This package provides a simple driving interface using throttle and steering commands.
+The basic mode uses a simple keyboard interface based on pr2_teleop_keyboard, and publishes
+the compressed OCSDrive.msg using two integers for throttle and steering.
+
+-->
+
+-->
+
+
+*/
