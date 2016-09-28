@@ -40,15 +40,16 @@ public:
   LaserscanToPointcloud()
     : filter_chain_("sensor_msgs::LaserScan")
   {
-    ros::NodeHandle nh_;
-
-    scan_sub_ = nh_.subscribe("scan", 10, &LaserscanToPointcloud::scanCallback, this);
-    point_cloud2_pub_ = nh_.advertise<sensor_msgs::PointCloud2>("scan_cloud",10,false);
-
-
     ros::NodeHandle pnh_("~");
     pnh_.param("max_range", p_max_range_, 29.0);
     pnh_.param("min_range", p_min_range_, 0.0);
+    pnh_.param<std::string>("input_topic", input_topic_, "scan");
+    pnh_.param<std::string>("output_topic", output_topic_, "scan_cloud");
+
+    ros::NodeHandle nh_;
+
+    scan_sub_ = nh_.subscribe(input_topic_, 10, &LaserscanToPointcloud::scanCallback, this);
+    point_cloud2_pub_ = nh_.advertise<sensor_msgs::PointCloud2>(output_topic_,10,false);
 
     filter_chain_.configure("scan_filter_chain", pnh_);
 
@@ -129,6 +130,8 @@ protected:
   double p_min_range_;
   bool p_use_high_fidelity_projection_;
   std::string p_target_frame_;
+  std::string input_topic_;
+  std::string output_topic_;
 
   laser_geometry::LaserProjection projector_;
 

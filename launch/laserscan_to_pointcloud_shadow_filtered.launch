@@ -10,6 +10,8 @@
     <param name="min_range" value="0.05" />
     <param name="use_high_fidelity_projection" value="true" />
     <param name="target_frame" value="pre_spindle" />
+    <param name="input_topic" value="scan" />
+    <param name="output_topic" value="scan_cloud" />
     <rosparam command="load" file="$(find hector_laserscan_to_pointcloud)/config/default_scan_shadow_filter.yaml" />
   </node>
 
